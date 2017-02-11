@@ -67,8 +67,11 @@ public class MatrixTest
 			   testmatrix, matrix.matrix);
     }
 
+    /**
+     * Test to copy 2D array to a matrix. 
+     */
     @Test
-    public void doubleConstructTest()
+    public void issue34Test()
     {
         m = 5;
         n = 5;
