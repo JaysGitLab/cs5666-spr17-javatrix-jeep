@@ -63,7 +63,8 @@ public class MatrixTest
 	    }
 	}
 	Matrix matrix = new Matrix(m, n, s);
-	assertArrayEquals("Constant arrays not the same" , testmatrix , matrix.matrix);
+	assertArrayEquals("Constant arrays not the same" ,
+			   testmatrix, matrix.matrix);
     }
     /**
     *Clean up for the test.

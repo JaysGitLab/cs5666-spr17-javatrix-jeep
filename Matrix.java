@@ -31,7 +31,7 @@ public class Matrix extends java.lang.Object
 *Constructor that build a matrix full of zeros.
 *
 *@param m rows
-*@param n rows
+*@param n colums
 */
     public  Matrix(int m, int n) 
     {
@@ -54,8 +54,8 @@ public class Matrix extends java.lang.Object
 *@param n - Number of colums.
 *@param s - Fill the matrix with this scalar value.
 */
-	public Matrix(int m, int n, double s)
-	{
+    public Matrix(int m, int n, double s)
+    {
 	this.m = m;
 	this.n = n;
 	matrix = new double[m][n];
@@ -66,5 +66,5 @@ public class Matrix extends java.lang.Object
 	        matrix [i][j] = s;	
 	    }	
 	}
-	}
+    }
 }
