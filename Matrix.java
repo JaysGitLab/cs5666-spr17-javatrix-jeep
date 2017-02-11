@@ -67,4 +67,23 @@ public class Matrix extends java.lang.Object
 	    }	
 	}
     }
+
+/**
+ * Constructor that sets the 2D param to the constant matrix.
+ *
+ * @param a - Double 2D array to be used as matrix.
+ */
+    public Matrix(double[][] a)
+    {
+        m = a.length;
+        n = a[0].length;
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix [i][j] = a[i][j];
+            }
+        }
+    }
 }
