@@ -46,4 +46,37 @@ public class Matrix extends java.lang.Object
 	    }	
 	}
     }
+
+
+/**
+*
+*Constructor to build a fast matrix without cheking arguments.
+*
+*@param m rows
+*@param n colums
+*@param a double to copy into matrix for fast generation
+*/
+
+    public Matrix(double[][] a, int m, int n)
+    {
+	this.m = m;
+	this.n = n;
+	matrix = new double[m][n];
+	
+	if (a.length >=  m && a[0].length >= n)
+	{
+	    for (int i = 0; i < m; i++)
+	    {
+		for (int j = 0; i < n; i++)
+		{
+		    matrix[i][j] = a[i][j];
+		} 
+	    }
+	}
+	else
+	{
+	    throw new IndexOutOfBoundsException();
+	}
+    }
 }
+

@@ -34,7 +34,7 @@ public class MatrixTest
     {
 	m = 5;
 	n = 5;
-	Matrix matrix = new Matrix(m , n);
+	Matrix matrix = new Matrix(m, n);
 	double [][] testmatrix = new double[m][n];
 	for (int i = 0; i < m; i++)
 	{
@@ -43,8 +43,53 @@ public class MatrixTest
 		testmatrix [i][j] = 0; 
 	    }
 	}
-	assertArrayEquals("Not the same" , testmatrix , matrix.matrix);
+	assertArrayEquals("Not the same", testmatrix, matrix.matrix);
     }
+    
+    /**
+    *Test for creating a matrix quickly witout cheking arguments.
+    *Success test.
+    */
+    @Test
+    public void issue35Success()
+    {
+   	m = 5;
+	n = 5;
+	double [][] testmatrix = new double[5][5];
+	for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                testmatrix [i][j] = 0;
+            }
+        }
+	Matrix matrix = new Matrix(testmatrix, m, n);
+	assertArrayEquals("Not the same", testmatrix, matrix.matrix);
+
+
+    }
+    
+    /**
+    *Test for creating a matrix quickly witout cheking arguments.
+    *Fail test.
+    */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void issue35Fail()
+    {
+        m = 15;
+        n = 20;
+        double [][] testmatrix = new double[5][5];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                testmatrix [i][j] = 0;
+            }
+        }
+        Matrix matrix = new Matrix(testmatrix, m, n);
+        assertArrayEquals("Not the same", testmatrix, matrix.matrix);
+    }
+
     /**
     *Clean up for the test.
     */
