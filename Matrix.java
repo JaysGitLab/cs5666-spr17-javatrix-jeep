@@ -46,4 +46,25 @@ public class Matrix extends java.lang.Object
 	    }	
 	}
     }
+/**
+*
+*Constructor that builds a m-by-n constant matrix.
+*
+*@param m - Number of rows.
+*@param n - Number of colums.
+*@param s - Fill the matrix with this scalar value.
+*/
+	public Matrix(int m, int n, double s)
+	{
+	this.m = m;
+	this.n = n;
+	matrix = new double[m][n];
+	for (int i = 0; i < m; i++)
+	{
+	    for (int j = 0; j < n; j++)
+	    {
+	        matrix [i][j] = s;	
+	    }	
+	}
+	}
 }

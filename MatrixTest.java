@@ -46,6 +46,26 @@ public class MatrixTest
 	assertArrayEquals("Not the same" , testmatrix , matrix.matrix);
     }
     /**
+    *Test for constant matrix of double.
+    */
+    @Test
+    public void constantmatrixTest()
+    {
+	m = 5;
+	n = 5;
+	double s = 1.5;
+	testmatrix = new double[m][n];
+	for (int i = 0; i < m; i++)
+	{
+	    for (int j = 0; j < n; j++)
+	    {
+		testmatrix [i][j] = s; 
+	    }
+	}
+	Matrix matrix = new Matrix(m, n, s);
+	assertArrayEquals("Constant arrays not the same" , testmatrix , matrix.matrix);
+    }
+    /**
     *Clean up for the test.
     */
     @After
