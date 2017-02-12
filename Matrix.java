@@ -117,5 +117,15 @@ public class Matrix extends java.lang.Object
             }
         }
     }
+
+    /**
+     * Method that returns the dimension of the matrix.
+     * 
+     * @return the matrix row dimension.
+     */
+    public int getRowDimension()
+    {
+        return matrix[0].length;
+    }
 }
 
