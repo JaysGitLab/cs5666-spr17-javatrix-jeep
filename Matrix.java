@@ -1,3 +1,4 @@
+import java.util.Random;
 /**
  * Matrix.java
  *
@@ -18,7 +19,7 @@
 *
 *@version Feb 2017
  */
-import java.util.Random;
+
 
 public class Matrix extends java.lang.Object 
     implements java.lang.Cloneable, java.io.Serializable 
@@ -119,6 +120,27 @@ public class Matrix extends java.lang.Object
         }
     }
 
+    /**
+     * Method that returns the dimension of the matrix.
+     * 
+     * @return the matrix row dimension.
+     */
+    public int getRowDimension()
+    {
+        return matrix[0].length;
+    }
+
+    /** 
+     * Method the returns the matrix column number.
+     *
+     * @return the matrix column.
+     */
+    public int getColumnDimension()
+    {
+        return matrix.length;
+    }
+
+
 
 
 /**
@@ -131,7 +153,7 @@ public class Matrix extends java.lang.Object
 
     public void set(int i, int j, double s)
     {
-	if ( i > this.m || j > this.n)
+	if (i > this.m || j > this.n)
 	{
 	    throw new ArrayIndexOutOfBoundsException();
 	}	
@@ -142,15 +164,15 @@ public class Matrix extends java.lang.Object
 
 /**
 *
-* Method to get a double from a matrix at the position [i][j]
+* Method to get a double from a matrix at the position [i][j].
 * @param i Rows
 * @param j colums
-* 
+* @return double inside the matrix at i,j.
 */
 
     public double get(int i, int j)
     {
-        if ( i > this.m || j > this.n)
+        if (i > this.m || j > this.n)
         {
             throw new ArrayIndexOutOfBoundsException();
         }
@@ -165,18 +187,18 @@ public class Matrix extends java.lang.Object
 *
 * @param m  Rows
 * @param n  Colums
-*
+* @return Random matrix.
 */
 
     public static Matrix random(int m, int n)
     {
-    	Matrix matrix = new Matrix(m,n);
+    	Matrix matrix = new Matrix(m, n);
 	Random random = new Random();
-	for (int i = 0; i < m; i++ )
+	for (int i = 0; i < m; i++)
 	{
 	    for (int j = 0; i < 1; i++)
 	    {
-	    matrix.set(m,n,random.nextInt());
+	        matrix.set(m, n, random.nextInt());
     	    }
 	}
 	

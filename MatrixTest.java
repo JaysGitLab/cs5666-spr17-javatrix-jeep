@@ -1,8 +1,11 @@
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.After;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.equalTo;
+
 /**
 * MatrixTest.java
 *@author Erick Lares
@@ -136,7 +139,7 @@ public class MatrixTest
 
 
      /**
-     * Test for get
+     * Test for get.
      */
     @Test
     public void issue10Test()
@@ -145,13 +148,13 @@ public class MatrixTest
         n = 5;
 	int i = 3;
 	int j = 2;
-        Matrix matrix = new Matrix( m, n);
-	double s = matrix.get( i, j);
+        Matrix matrix = new Matrix(m, n);
+	double s = matrix.get(i, j);
         assertEquals(s, 0, 0);
     }
 
     /**
-     * Test for get
+     * Test for get failure.
      */
     @Test(expected = IndexOutOfBoundsException.class)
     public void issue10TestFailure()
@@ -160,13 +163,13 @@ public class MatrixTest
         n = 5;
         int i = 10;
         int j = 10;
-        Matrix matrix = new Matrix( m, n);
-        double s = matrix.get( i, j);
+        Matrix matrix = new Matrix(m, n);
+        double s = matrix.get(i, j);
         assertEquals(s, 0, 0);
     }
 
      /**
-     * Test for set
+     * Test for set.
      */
     @Test
     public void issue40Test()
@@ -175,15 +178,15 @@ public class MatrixTest
         n = 5;
         int i = 3;
         int j = 2;
-        Matrix matrix = new Matrix( m, n);
+        Matrix matrix = new Matrix(m, n);
         double s = 5;
-	matrix.set( i, j, s);
-	double test = matrix.get( i, j);
+	matrix.set(i, j, s);
+	double test = matrix.get(i, j);
         assertEquals(s, test, 0);
     }
 
     /**
-     * Test for set failure
+     * Test for set failure.
      */
     @Test(expected = IndexOutOfBoundsException.class)
     public void issue40TestFailure()
@@ -192,28 +195,58 @@ public class MatrixTest
         n = 5;
         int i = 10;
         int j = 10;
-        Matrix matrix = new Matrix( m, n);
+        Matrix matrix = new Matrix(m, n);
         double s = 5;
-        matrix.set( i, j, s);
-        double test = matrix.get( i, j);
+        matrix.set(i, j, s);
+        double test = matrix.get(i, j);
         assertEquals(s, test, 0);
 
     }
     
     /**
-    * Test for random
+    * Test for random.
     */
     public void issue33Test()
     {    
 	m = 10;
 	n = 12;
-	Matrix matrix = Matrix.random(m,n);
-	Matrix testMatrix = new Matrix(m,n);
+	Matrix matrix = Matrix.random(m, n);
+	Matrix testMatrix = new Matrix(m, n);
 	assertThat(matrix, not(equalTo(testMatrix)));
 	
 
     }
     
+    /**
+     * Test to make sure row dimension is correct.
+     */
+    @Test
+    public void issue29Test()
+    {
+        m = 5;
+        n = 5;
+
+        testmatrix = new double[m][n];
+        Matrix matrix = new Matrix(testmatrix);  
+        assertEquals("Not the same row dimension.", 
+	    n, matrix.getRowDimension());
+    }
+
+    /**
+     * Test column dimension for accuracy.
+     */
+    @Test
+    public void issue13Test()
+    {
+        m = 5;
+        n = 5;
+
+        testmatrix = new double[m][n];
+        Matrix matrix = new Matrix(testmatrix);
+        assertEquals("Not the same column dimension.", 
+	    m, matrix.getColumnDimension());
+    }
+
     /**
     *Clean up for the test.
     */
