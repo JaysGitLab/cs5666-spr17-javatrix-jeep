@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.After;
 
@@ -131,6 +132,21 @@ public class MatrixTest
         }
         Matrix matrix = new Matrix(testmatrix);
         assertArrayEquals("Not the same.", testmatrix, matrix.matrix);
+    }
+
+    /**
+     * Test column dimension for accuracy.
+     */
+    @Test
+    public void issue13Test()
+    {
+        m = 5;
+        n = 5;
+
+        testmatrix = new double[m][n];
+        Matrix matrix = new Matrix(testmatrix);
+        assertEquals("Not the same column dimension.", 
+            m, matrix.getColumnDimension());
     }
 
     /**
