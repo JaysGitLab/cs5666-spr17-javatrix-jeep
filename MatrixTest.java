@@ -1,7 +1,8 @@
 import static org.junit.Assert.assertArrayEquals;
 import org.junit.Test;
 import org.junit.After;
-
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 /**
 * MatrixTest.java
 *@author Erick Lares
@@ -133,6 +134,86 @@ public class MatrixTest
         assertArrayEquals("Not the same.", testmatrix, matrix.matrix);
     }
 
+
+     /**
+     * Test for get
+     */
+    @Test
+    public void issue10Test()
+    {
+        m = 5;
+        n = 5;
+	int i = 3;
+	int j = 2;
+        Matrix matrix = new Matrix( m, n);
+	double s = matrix.get( i, j);
+        assertEquals(s, 0, 0);
+    }
+
+    /**
+     * Test for get
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void issue10TestFailure()
+    {
+        m = 5;
+        n = 5;
+        int i = 10;
+        int j = 10;
+        Matrix matrix = new Matrix( m, n);
+        double s = matrix.get( i, j);
+        assertEquals(s, 0, 0);
+    }
+
+     /**
+     * Test for set
+     */
+    @Test
+    public void issue40Test()
+    {
+        m = 5;
+        n = 5;
+        int i = 3;
+        int j = 2;
+        Matrix matrix = new Matrix( m, n);
+        double s = 5;
+	matrix.set( i, j, s);
+	double test = matrix.get( i, j);
+        assertEquals(s, test, 0);
+    }
+
+    /**
+     * Test for set failure
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void issue40TestFailure()
+    {
+        m = 5;
+        n = 5;
+        int i = 10;
+        int j = 10;
+        Matrix matrix = new Matrix( m, n);
+        double s = 5;
+        matrix.set( i, j, s);
+        double test = matrix.get( i, j);
+        assertEquals(s, test, 0);
+
+    }
+    
+    /**
+    * Test for random
+    */
+    public void issue33Test()
+    {    
+	m = 10;
+	n = 12;
+	Matrix matrix = Matrix.random(m,n);
+	Matrix testMatrix = new Matrix(m,n);
+	assertThat(matrix, not(equalTo(testMatrix)));
+	
+
+    }
+    
     /**
     *Clean up for the test.
     */
