@@ -135,6 +135,21 @@ public class MatrixTest
     }
 
     /**
+     * Test to make sure row dimension is correct.
+     */
+    @Test
+    public void issue29Test()
+    {
+        m = 5;
+        n = 5;
+
+        testmatrix = new double[m][n];
+        Matrix matrix = new Matrix(testmatrix);  
+        assertEquals("Not the same row dimension.", 
+            n, matrix.getRowDimension());
+    }
+
+    /**
      * Test column dimension for accuracy.
      */
     @Test
