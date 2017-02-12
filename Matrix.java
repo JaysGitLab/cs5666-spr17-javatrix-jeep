@@ -127,5 +127,15 @@ public class Matrix extends java.lang.Object
     {
         return matrix[0].length;
     }
+
+    /** 
+     * Method the returns the matrix column number.
+     *
+     * @return the matrix column.
+     */
+    public int getColumnDimension()
+    {
+        return matrix.length;
+    }
 }
 

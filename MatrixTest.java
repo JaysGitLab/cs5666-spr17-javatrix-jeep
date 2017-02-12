@@ -144,10 +144,24 @@ public class MatrixTest
         n = 5;
 
         testmatrix = new double[m][n];
-        Matrix matrix = new Matrix(testmatrix);
-
+        Matrix matrix = new Matrix(testmatrix);  
         assertEquals("Not the same row dimension.", 
             n, matrix.getRowDimension());
+    }
+
+    /**
+     * Test column dimension for accuracy.
+     */
+    @Test
+    public void issue13Test()
+    {
+        m = 5;
+        n = 5;
+
+        testmatrix = new double[m][n];
+        Matrix matrix = new Matrix(testmatrix);
+        assertEquals("Not the same column dimension.", 
+            m, matrix.getColumnDimension());
     }
 
     /**
