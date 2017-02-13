@@ -248,6 +248,22 @@ public class MatrixTest
     }
 
     /**
+    * Test to thes scalar multiplication in place.
+    */
+    @Test
+    public void issue47Test()
+    {
+        m = 5;
+        n = 5;
+	double s = 2;
+	Matrix matrix = new Matrix(m, n, 5);
+	Matrix testMatrix = new Matrix(m, n, 5 * s);
+	matrix.timesEquals(s);
+   	assertArrayEquals("The multiplication went wrong", 
+	    matrix.matrix, testMatrix.matrix);   
+    }
+
+    /**
     *Clean up for the test.
     */
     @After
