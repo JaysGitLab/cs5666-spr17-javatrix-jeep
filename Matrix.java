@@ -205,5 +205,25 @@ public class Matrix extends java.lang.Object
 	return matrix;
     }
 
+/**
+* Method to multiply a matrix by a scalar.
+* 
+* @param s Scalar
+* @return Matrix multiplied by the scalar.
+*/
+
+    public Matrix times(double s)
+    {
+	Matrix result = new Matrix(this.m, this.n);
+	for (int i = 0; i < this.m; i++)
+	{
+	    for (int j = 0; i < this.n; i++)
+	    {
+	        result.set(i, j, matrix[i][j] * s);
+ 	    }
+	}
+   	return result;
+    }  
+
 
 }    
