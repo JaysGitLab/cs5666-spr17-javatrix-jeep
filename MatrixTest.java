@@ -247,6 +247,24 @@ public class MatrixTest
 	    m, matrix.getColumnDimension());
     }
 
+   /**
+    * Test to thes scalar multiplication.
+    */
+    @Test
+    public void issue45Test()
+    {
+        m = 5;
+        n = 5;
+	double s = 2;
+	Matrix matrix = new Matrix(m, n, 5);
+	Matrix testMatrix = new Matrix(m, n, 5 * s);
+	Matrix multiply = matrix.times(s);
+   	assertArrayEquals("The multiplication went wrong", 
+	    multiply.matrix, testMatrix.matrix);   
+    }
+
+   
+
     /**
     * Test to thes scalar multiplication in place.
     */
