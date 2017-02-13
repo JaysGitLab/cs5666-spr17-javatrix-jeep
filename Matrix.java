@@ -208,7 +208,6 @@ public class Matrix extends java.lang.Object
 /**
 * Method to multiply a matrix by a scalar.
 * 
-* 
 * @param s Scalar
 * @return Matrix multiplied by the scalar.
 */
