@@ -208,13 +208,14 @@ public class Matrix extends java.lang.Object
 /**
 * Method to multiply a matrix by a scalar.
 * 
+* 
 * @param s Scalar
 * @return Matrix multiplied by the scalar.
 */
 
     public Matrix times(double s)
     {
-	Matrix result = new Matrix(this.m, this.n);
+	Matrix result = new Matrix(this.m, this.n, s);
 	for (int i = 0; i < this.m; i++)
 	{
 	    for (int j = 0; i < this.n; i++)
@@ -225,5 +226,24 @@ public class Matrix extends java.lang.Object
    	return result;
     }  
 
+/**
+* Method to multiply a matrix by a scalar in place.
+*
+* @param s Scalar
+* @return Matrix multiplied by the scalar.
+*/
+
+    public Matrix timesEquals(double s)
+    {
+
+        for (int i = 0; i < this.m; i++)
+        {
+            for (int j = 0; i < this.n; i++)
+            {
+                this.matrix[i][j] = (this.matrix[i][j] * s);
+            }
+        }
+        return this;
+    }
 
 }    
