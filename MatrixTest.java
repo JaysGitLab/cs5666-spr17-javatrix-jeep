@@ -1,3 +1,6 @@
+import java.io.PrintStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintWriter;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -5,6 +8,7 @@ import org.junit.After;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.equalTo;
+import org.junit.Before;
 
 /**
 * MatrixTest.java
@@ -26,11 +30,14 @@ import static org.hamcrest.CoreMatchers.equalTo;
 
 public class MatrixTest 
 {
-    double [][] testmatrix;
-    int m;
-    int n;
-    Matrix matrix;	
-    /**
+    private double [][] testmatrix;
+    private int m;
+    private int n;
+    private Matrix matrix;	
+    private final ByteArrayOutputStream 
+    outContent = new ByteArrayOutputStream();
+    private PrintStream initial;
+     /**
     *Test for array of zeros.
     */
     @Test
@@ -281,6 +288,45 @@ public class MatrixTest
 	    matrix.matrix, testMatrix.matrix);   
     }
 
+
+
+/**
+* Test print with output.
+*/
+    @Test
+    public void testPrintWithOutput() 
+    {	
+        String out = " 0  0 \n" 
+	    + " 0  0 \n\n";
+	PrintWriter output = new PrintWriter(outContent, true);
+	Matrix matrix = new Matrix(2, 2);
+	matrix.print(output, 1, 0);
+	assertEquals(outContent.toString(), out);
+    }
+	
+/**
+* Test print to console.
+*/
+    @Test
+    public void testPrinttoconsole() 
+    {
+	String out = " 0  0 \n" 
+	    + " 0  0 \n\n";
+        Matrix matrix = new Matrix(2, 2);
+        matrix.print(1, 0);
+        assertEquals(outContent.toString(), out);
+    }
+
+/**
+* Set up initial output.
+*/
+    @Before	
+    public void setUpStreams() 
+    {
+  	initial = System.out;
+	System.setOut(new PrintStream(outContent));	
+    }
+
     /**
     *Clean up for the test.
     */
@@ -291,6 +337,8 @@ public class MatrixTest
 	testmatrix = null;
         m = 0;
         n = 0;
+        System.setOut(initial);
     }
+
 
 }
