@@ -228,7 +228,7 @@ public class MatrixTest
      * Test to make sure row dimension is correct.
      */
     @Test
-    public void issue29Test()
+    public void issue19Test()
     {
         m = 5;
         n = 5;
@@ -294,7 +294,7 @@ public class MatrixTest
 * Test print with output.
 */
     @Test
-    public void testPrintWithOutput() 
+    public void issue31Test() 
     {	
         String out = " 0  0 \n" 
 	    + " 0  0 \n\n";
@@ -308,7 +308,7 @@ public class MatrixTest
 * Test print to console.
 */
     @Test
-    public void testPrinttoconsole() 
+    public void issue29Test() 
     {
 	String out = " 0  0 \n" 
 	    + " 0  0 \n\n";
