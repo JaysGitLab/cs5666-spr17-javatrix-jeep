@@ -454,5 +454,37 @@ public class Matrix
     }
 
 
+/**
+* Method to get the Norm infinite.
+*
+*@return double result of norm inifinite
+*/
+
+    public double normInf()
+    {
+
+        double result = 0;
+	double [] aux = new double[m];
+	double x = 0;
+	for (int i = 0; i < m; i++)
+	{
+	    for (int j = 0; j < n; j++)
+	    {
+	    	x = x + Math.abs(matrix[j][i)]; 
+  	    }
+	    aux[i] = x;
+	    x = 0;
+	}
+	double max = 0;
+	for (int i = 0; i < aux.length; i++)
+	{
+	    if (aux[i] > max)
+	    {
+		max = aux[i];
+	    }   
+	}	
+	return max;
+    }
+
 
 }    
