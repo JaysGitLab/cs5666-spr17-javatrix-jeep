@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.io.PrintWriter;
 /**
  * Matrix.java
  *
@@ -66,12 +67,51 @@ public class Matrix
         {
             for (int j = 0; j < n; j++)
             {
+
                 matrix[i][j] = a[i][j];
             }
         }
         
         
     }
+
+
+
+/**
+*
+*Constructor to build a matrix from a one-dimensional array.
+*
+*@param vals single dimensional array
+*@param m Rows
+*
+*/
+
+    public Matrix(double[] vals, int m)
+    {
+        this.m = m;
+        this.n = (vals.length) / m;
+	int ismultiple = (vals.length) % m;
+	int nextval = 0;
+	if (ismultiple == 0)
+	{
+	    matrix = new double[m][n];
+	    for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    matrix[i][j] = vals[nextval];
+		    nextval = nextval + 1;
+                }
+            }
+
+	}
+	else
+	{
+	    throw new IllegalArgumentException();
+	}
+
+    }
+
 
 /**
 *
@@ -248,6 +288,7 @@ public class Matrix
         return this;
     }
 
+
 /**
 * Method to multiply a matrix by a matrix.
 *
@@ -280,9 +321,56 @@ public class Matrix
 	    }
 	} 
         return result;
+
+
+
+/**
+* Print the matrix to the output stream.  
+* 
+* @param output  the output stream
+* @param w  column space in between
+* @param d number of digits after the decimal
+*/
+    public void print(java.io.PrintWriter output, int w, int d)
+    {
+	if (w <= 0 || d < 0)
+	{ 
+	    return;
+	}	
+	for (int i = 0; i < m; i++) 
+	{
+	    for (int j = 0; j < n; j++) 
+	    {
+		if (matrix[i][j] < 0)
+		{
+		    output.print(String.format("%" + (w + 1) 
+		        + "." + d + "f ", (matrix[i][j])));
+		}
+		else
+		{
+		    output.print(String.format(" %" + w 
+			+ "." + d + "f ", (matrix[i][j])));
+	    	}
+	    }
+	    output.println();
+	}
+	output.println();
     }
 
 
+
+
+/**
+* Method to print the matrix to console.
+*
+* @param w space in between
+* @param d number of digits after decimal
+*/
+
+    public void print(int w, int d) 
+    {
+	print(new PrintWriter(System.out, true), w, d);
+    }
 
 
 }    

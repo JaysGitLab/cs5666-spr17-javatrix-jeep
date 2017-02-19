@@ -1,3 +1,6 @@
+import java.io.PrintStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintWriter;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -5,6 +8,7 @@ import org.junit.After;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.equalTo;
+import org.junit.Before;
 
 /**
 * MatrixTest.java
@@ -26,11 +30,14 @@ import static org.hamcrest.CoreMatchers.equalTo;
 
 public class MatrixTest 
 {
-    double [][] testmatrix;
-    int m;
-    int n;
-    Matrix matrix;	
-    /**
+    private double [][] testmatrix;
+    private int m;
+    private int n;
+    private Matrix matrix;	
+    private final ByteArrayOutputStream 
+    outContent = new ByteArrayOutputStream();
+    private PrintStream initial;
+     /**
     *Test for array of zeros.
     */
     @Test
@@ -49,6 +56,50 @@ public class MatrixTest
 	}
 	assertArrayEquals("Not the same", testmatrix, matrix.getArray());
     }
+	
+    /**
+    *Test for creating a matrix of a one dimentional array.
+    *Success test.
+    */
+    @Test
+    public void issue36Success()
+    {
+        m = 2;
+        n = 2;
+	double[] oneD = new double[] {0, 1, 2, 3};
+	testmatrix = new double[m][n];
+	testmatrix[0][0] = oneD[0];
+	testmatrix[0][1] = oneD[1];
+	testmatrix[1][0] = oneD[2];
+	testmatrix[1][1] = oneD[3];
+   	matrix = new Matrix(oneD, m);
+        assertArrayEquals("Not the same", matrix.matrix, testmatrix);
+
+
+    }
+
+     /**
+    *Test for creating a matrix of a one dimentional array.
+    *Fail test.
+    */
+    @Test(expected = IllegalArgumentException.class)
+    public void issue36Fail()
+    {
+        m = 3;
+        n = 2;
+        double[] oneD = new double[]{0, 1, 2, 3};
+        testmatrix = new double[m][n];
+        testmatrix[0][0] = oneD[0];
+        testmatrix[0][1] = oneD[1];
+        testmatrix[1][0] = oneD[2];
+        testmatrix[1][1] = oneD[3];
+        matrix = new Matrix(oneD, m);
+        assertArrayEquals("Not the same", testmatrix, matrix.matrix);
+
+
+    }
+
+
     
     /**
     *Test for creating a matrix quickly witout cheking arguments.
@@ -221,7 +272,7 @@ public class MatrixTest
      * Test to make sure row dimension is correct.
      */
     @Test
-    public void issue29Test()
+    public void issue19Test()
     {
         m = 5;
         n = 5;
@@ -281,6 +332,7 @@ public class MatrixTest
 	    matrix.getArray(), testMatrix.getArray());   
     }
 
+
    /**
     * Test multiplication between matrixs.
     */
@@ -335,6 +387,46 @@ public class MatrixTest
             c, testMatrix.getArray());
     }   
 
+
+
+/**
+* Test print with output.
+*/
+    @Test
+    public void issue31Test() 
+    {	
+        String out = " 0  0 \n" 
+	    + " 0  0 \n\n";
+	PrintWriter output = new PrintWriter(outContent, true);
+	Matrix matrix = new Matrix(2, 2);
+	matrix.print(output, 1, 0);
+	assertEquals(outContent.toString(), out);
+    }
+	
+/**
+* Test print to console.
+*/
+    @Test
+    public void issue29Test() 
+    {
+	String out = " 0  0 \n" 
+	    + " 0  0 \n\n";
+        Matrix matrix = new Matrix(2, 2);
+        matrix.print(1, 0);
+        assertEquals(outContent.toString(), out);
+    }
+
+/**
+* Set up initial output.
+*/
+    @Before	
+    public void setUpStreams() 
+    {
+  	initial = System.out;
+	System.setOut(new PrintStream(outContent));	
+    }
+
+
     /**
     *Clean up for the test.
     */
@@ -345,6 +437,8 @@ public class MatrixTest
 	testmatrix = null;
         m = 0;
         n = 0;
+        System.setOut(initial);
     }
+
 
 }
