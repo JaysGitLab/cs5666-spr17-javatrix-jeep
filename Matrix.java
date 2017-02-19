@@ -469,7 +469,7 @@ public class Matrix
 	{
 	    for (int j = 0; j < m; j++)
 	    {
-	    	x = x + matrix[j][i]; 
+	    	x = x + Math.abs(matrix[j][i]); 
   	    }
 	    aux[i] = x;
 	    x = 0;
