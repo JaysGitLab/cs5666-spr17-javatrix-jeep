@@ -249,7 +249,6 @@ public class Matrix
 	return matrix;
     }
 
-<<<<<<< 6d64e0987fee191a9841154cc9e43165cdbbe01e
 /**
 * Method to multiply a matrix by a scalar.
 * 
@@ -455,8 +454,6 @@ public class Matrix
         return this;
     }
 
-
-=======
     /**
      * Method to add two matrices together.
      *
@@ -486,6 +483,5 @@ public class Matrix
 
         return b;
     }
->>>>>>> Matrix plus is working, javatest isn't.
 
 }    
