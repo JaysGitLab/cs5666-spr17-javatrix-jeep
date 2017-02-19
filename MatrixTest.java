@@ -442,6 +442,24 @@ public class MatrixTest
             matrix.getArray(), result.getArray());
 
     }
+/**
+* Test getArrayCopy to get a copy of the internal array of a matrix.
+*/
+    @Test
+    public void issue12Test()
+    {
+	m = 3;
+	n = 3;
+        double[][] arraytest = new double[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+	matrix = new Matrix(arraytest, m, n);
+	double[][] copyarray = matrix.getArrayCopy();
+	
+	assertArrayEquals("The multiplication went wrong",
+            copyarray, arraytest);
+
+    }
+
+
 
 
 
