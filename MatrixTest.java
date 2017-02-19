@@ -463,7 +463,26 @@ public class MatrixTest
 
     }
 
+/**
+ * 
+ * Test for plus method in place.
+ *
+ */
+    @Test
+    public void issue28Test()
+    {
+        m = 3;
+        n = 3;
+        double[][] a = new double[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        double[][] b = new double[][]{{0, 1, 2}, {3, 4, 5}, {6, 7, 8}};
+        double[][] c = new double[][]{{1, 3, 5}, {7, 9, 11}, {13, 15, 17}};
+        Matrix matrix = new Matrix(a, m, n);
+        Matrix matrixb = new Matrix(b, 3, 3);
+        matrix.plusEquals(matrixb);
 
+        assertArrayEquals("The addition went wtong",
+            c, matrix.getArray());
+    }
 
 /**
 * Test copy of a matrix.
