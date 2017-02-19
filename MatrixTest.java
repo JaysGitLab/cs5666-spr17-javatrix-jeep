@@ -417,6 +417,32 @@ public class MatrixTest
     }
 
 /**
+* Test copy of a matrix.
+*/
+    @Test
+    public void issue9Test()
+    {
+        matrix = Matrix.random(3, 4);
+	Matrix testMatrix = matrix.copy();
+	assertArrayEquals("The multiplication went wrong",
+            matrix.getArray(), testMatrix.getArray());
+
+    }
+
+/**
+* Test clone of a matrix.
+*/
+    @Test
+    public void issue7Test()
+    {
+        matrix = Matrix.random(3, 4);
+        Object testMatrix = matrix.clone();
+	Matrix result = (Matrix) testMatrix; 
+        assertArrayEquals("The multiplication went wrong",
+            matrix.getArray(), result.getArray());
+
+    }
+/**
 * Test getArrayCopy to get a copy of the internal array of a matrix.
 */
     @Test
@@ -432,6 +458,7 @@ public class MatrixTest
             copyarray, arraytest);
 
     }
+
 
 
 

@@ -376,8 +376,7 @@ public class Matrix
 *
 *@return Double internal array of the matrix
 */
-
-    public double[][] getArrayCopy()
+   public double[][] getArrayCopy()
     {
 	double[][] copy = new double[m][n];
      	for (int i = 0; i < m; i++)
@@ -389,5 +388,30 @@ public class Matrix
         }
 	return copy;
     }
+
+/**
+* Method to make a deep copy of the array.
+* @return copy of the matrix
+*
+*/
+
+    public Matrix copy()
+    {
+    	Matrix result = new Matrix(this.getArray(), m, n);
+    	return result;
+    }
+
+/**
+* Method to clone the matrix into an object.
+* @return Object with the matrix inside
+*
+*/
+
+    public Object clone()
+    {
+        return this.copy();
+    }
+
+
 
 }    
