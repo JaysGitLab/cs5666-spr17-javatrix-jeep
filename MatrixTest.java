@@ -73,7 +73,7 @@ public class MatrixTest
 	testmatrix[1][0] = oneD[2];
 	testmatrix[1][1] = oneD[3];
    	matrix = new Matrix(oneD, m);
-        assertArrayEquals("Not the same", matrix.matrix, testmatrix);
+        assertArrayEquals("Not the same", matrix.getArray(), testmatrix);
 
 
     }
@@ -94,7 +94,7 @@ public class MatrixTest
         testmatrix[1][0] = oneD[2];
         testmatrix[1][1] = oneD[3];
         matrix = new Matrix(oneD, m);
-        assertArrayEquals("Not the same", testmatrix, matrix.matrix);
+        assertArrayEquals("Not the same", testmatrix, matrix.getArray());
 
 
     }
