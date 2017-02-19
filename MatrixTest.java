@@ -49,6 +49,50 @@ public class MatrixTest
 	}
 	assertArrayEquals("Not the same", testmatrix, matrix.matrix);
     }
+	
+    /**
+    *Test for creating a matrix of a one dimentional array.
+    *Success test.
+    */
+    @Test
+    public void issue36Success()
+    {
+        m = 2;
+        n = 2;
+	double[] oneD = new double[] {0, 1, 2, 3};
+	testmatrix = new double[m][n];
+	testmatrix[0][0] = oneD[0];
+	testmatrix[0][1] = oneD[1];
+	testmatrix[1][0] = oneD[2];
+	testmatrix[1][1] = oneD[3];
+   	matrix = new Matrix(oneD, m);
+        assertArrayEquals("Not the same", matrix.matrix, testmatrix);
+
+
+    }
+
+     /**
+    *Test for creating a matrix of a one dimentional array.
+    *Fail test.
+    */
+    @Test(expected = IllegalArgumentException.class)
+    public void issue36Fail()
+    {
+        m = 3;
+        n = 2;
+        double[] oneD = new double[]{0, 1, 2, 3};
+        testmatrix = new double[m][n];
+        testmatrix[0][0] = oneD[0];
+        testmatrix[0][1] = oneD[1];
+        testmatrix[1][0] = oneD[2];
+        testmatrix[1][1] = oneD[3];
+        matrix = new Matrix(oneD, m);
+        assertArrayEquals("Not the same", testmatrix, matrix.matrix);
+
+
+    }
+
+
     
     /**
     *Test for creating a matrix quickly witout cheking arguments.

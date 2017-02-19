@@ -67,7 +67,7 @@ public class Matrix extends java.lang.Object
         {
             for (int i = 0; i < m; i++)
             {
-                for (int j = 0; i < n; i++)
+                for (int j = 0; j < n; j++)
                 {
                     matrix[i][j] = a[i][j];
                 }
@@ -78,6 +78,44 @@ public class Matrix extends java.lang.Object
             throw new IndexOutOfBoundsException();
 	}
     }
+
+
+
+/**
+*
+*Constructor to build a matrix from a one-dimensional array.
+*
+*@param vals single dimensional array
+*@param m Rows
+*
+*/
+
+    public Matrix(double[] vals, int m)
+    {
+        this.m = m;
+        this.n = (vals.length) / m;
+	int ismultiple = (vals.length) % m;
+	int nextval = 0;
+	if (ismultiple == 0)
+	{
+	    matrix = new double[m][n];
+	    for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    matrix[i][j] = vals[nextval];
+		    nextval = nextval + 1;
+                }
+            }
+
+	}
+	else
+	{
+	    throw new IllegalArgumentException();
+	}
+
+    }
+
 
 /**
 *
