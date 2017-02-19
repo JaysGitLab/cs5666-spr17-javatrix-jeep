@@ -417,6 +417,22 @@ public class MatrixTest
     }
 
 /**
+* Test copy of a matrix.
+*/
+    @Test
+    public void issue9Test()
+    {
+        matrix = Matrix.random(3, 4);
+	Matrix testMatrix = matrix.copy();
+	assertArrayEquals("The multiplication went wrong",
+            matrix.getArray(), testMatrix.getArray());
+
+    }
+
+
+
+
+/**
 * Set up initial output.
 */
     @Before	

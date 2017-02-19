@@ -372,5 +372,17 @@ public class Matrix
 	print(new PrintWriter(System.out, true), w, d);
     }
 
+/**
+* Method to make a deep copy of the array.
+* @return copy of the matrix
+*
+*/
+
+    public Matrix copy()
+    {
+    	Matrix result = new Matrix(this.getArray(), m, n);
+    	return result;
+    }
+
 
 }    
