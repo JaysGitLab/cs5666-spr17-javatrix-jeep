@@ -289,27 +289,24 @@ public class MatrixTest
     {
         m = 3;
         n = 3;
-        double[][] A = new double[][]{{1,2,3},{4,5,6},{7,8,9}};
-	double[][] B = new double[][]{{2,2,2},{2,2,2},{2,2,2}};
-	double[][] C = new double[][]{{12,12,12},{30,30,30},{48,48,48}};
-	Matrix matrix = new Matrix (A, m, n);
-	Matrix Result = new Matrix (C, m, n);
-	Matrix matrixb = new Matrix(B, m, n);
-	/**
+        double[][] a = new double[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+	double[][] b = new double[][]{{2, 2, 2}, {2, 2, 2}, {2, 2, 2}};
+	double[][] c = new double[][]{{12, 12, 12}, {30, 30, 30}, {48, 48, 48}};
+	Matrix matrix = new Matrix(a, m, n);
+	Matrix result = new Matrix(c, m, n);
+	Matrix matrixb = new Matrix(b, m, n);
 	Matrix testMatrix = matrix.times(matrixb);
-	*/
-	double[][] D = new double[][]{{1},{2},{3}};
-	double[][] result2 = new double[][]{{14},{32},{50}};
+	double[][] d = new double[][]{{1}, {2}, {3}};
+	double[][] result2 = new double[][]{{14}, {32}, {50}};
 	
-	Matrix secondTest = new Matrix (D,3,1);
+	Matrix secondTest = new Matrix(d, 3, 1);
 	
 	
 	Matrix final2 = matrix.times(secondTest);
 	
-      	/**
+      	
         assertArrayEquals("The multiplication went wrong",
-            C, testMatrix.getArray());
-	*/
+            c, testMatrix.getArray());
 	assertArrayEquals("The multiplication went wrong",
             result2, final2.getArray());
 	
@@ -325,17 +322,17 @@ public class MatrixTest
     {
         m = 2;
         n = 2;
-        double[][] A = new double[][]{{1,2},{4,5}};
-        double[][] B = new double[][]{{2,2,2},{2,2,2},{2,2,2}};
-        double[][] C = new double[][]{{12,12,12},{30,30,30},{48,48,48}};
-        Matrix matrix = new Matrix (A, m, n);
-        Matrix Result = new Matrix (C, 3, 3);
-        Matrix matrixb = new Matrix(B, 3, 3);
+        double[][] a = new double[][]{{1, 2}, {4, 5}};
+        double[][] b = new double[][]{{2, 2, 2}, {2, 2, 2}, {2, 2, 2}};
+        double[][] c = new double[][]{{12, 12, 12}, {30, 30, 30}, {48, 48, 48}};
+        Matrix matrix = new Matrix(a, m, n);
+        Matrix result = new Matrix(b, 3, 3);
+        Matrix matrixb = new Matrix(c, 3, 3);
         Matrix testMatrix = matrix.times(matrixb);
 
 
         assertArrayEquals("The multiplication went wrong",
-            C, testMatrix.getArray());
+            c, testMatrix.getArray());
     }   
 
     /**

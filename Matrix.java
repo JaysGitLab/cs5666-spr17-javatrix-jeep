@@ -73,17 +73,6 @@ public class Matrix
         
     }
 
-
-/**
-* Return the array.
-*
-* @return double[][]
-*/
-    public double[][] getArray()
-    {
-        return matrix;
-    }
-
 /**
 *
 *Constructor that builds a m-by-n constant matrix.
@@ -145,6 +134,15 @@ public class Matrix
         return n;
     }
 
+/**
+* Return the array.
+*
+* @return double[][]
+*/
+    public double[][] getArray()
+    {
+        return matrix;
+    }
 
 
 
@@ -224,7 +222,7 @@ public class Matrix
 	{
 	    for (int j = 0; j < n; j++)
 	    {
-	        result.set(i,j,matrix[i][j] * s);
+	        result.set(i, j, matrix[i][j] * s);
  	    }
 	}
    	return result;
@@ -253,35 +251,35 @@ public class Matrix
 /**
 * Method to multiply a matrix by a matrix.
 *
-* @param B matrix
-* @return MAtrix the product of this * B.
+* @param b matrix
+* @return MAtrix the product of this * b.
 */
 
-    public Matrix times(Matrix B)
+    public Matrix times(Matrix b)
     {
-	int BR = B.getRowDimension();
-	int BC = B.getColumnDimension();
-	Matrix A = new Matrix(m, BC);
+	int bRow = b.getRowDimension();
+	int bCol = b.getColumnDimension();
+	Matrix result = new Matrix(m, bCol);
 	
-	if (n != BR)
+	if (n != bRow)
 	{
-	   throw new IllegalArgumentException();
+	    throw new IllegalArgumentException();
 	}
 	
 	double x = 0;
 	for (int vals = 0; vals < (m); vals++)
 	{
-	   for (int j = 0; j < BC; j++)
-	   {
-	      	for (int i = 0; i < n; i++)
-	   	{    
-		    x = x + (matrix[vals][i] * B.get(i,j));
-	   	}
-		A.set(vals,j,x);
-	   	x = 0;
-	   }
+	    for (int j = 0; j < bCol; j++)
+	    {
+	       	for (int i = 0; i < n; i++)
+	     	{    
+	    	    x = x + (matrix[vals][i] * b.get(i, j));
+	    	}
+	    	result.set(vals, j, x);
+	    	x = 0;
+	    }
 	} 
-        return A;	
+        return result;
     }
 
 
