@@ -415,6 +415,55 @@ public class MatrixTest
         matrix.print(1, 0);
         assertEquals(outContent.toString(), out);
     }
+/**
+*
+* Test for minus method. 
+*
+*/
+
+    @Test
+    public void issue22Test()
+    {
+    	m = 3;
+        n = 3;
+        double[][] a = new double[][]{{3, 2, 6}, {1, 5, 4}, {2, 10, 5}};
+        double[][] b = new double[][]{{2, 1, 5}, {8, 1, 0}, {3, 2, 1}};
+        double[][] c = new double[][]{{1, 1, 1}, {-7, 4, 4}, {-1, 8, 4}};
+        Matrix matrix = new Matrix(a, m, n);
+        Matrix matrixb = new Matrix(b, 3, 3);
+        Matrix testMatrix = matrix.minus(matrixb);
+
+
+        assertArrayEquals("The multiplication went wrong",
+            c, testMatrix.getArray());
+
+    }
+
+/**
+*
+* Test for minus method in place.
+*
+*/
+
+    @Test
+    public void issue23Test()
+    {
+        m = 3;
+        n = 3;
+        double[][] a = new double[][]{{3, 2, 6}, {1, 5, 4}, {2, 10, 5}};
+        double[][] b = new double[][]{{2, 1, 5}, {8, 1, 0}, {3, 2, 1}};
+        double[][] c = new double[][]{{1, 1, 1}, {-7, 4, 4}, {-1, 8, 4}};
+        Matrix matrix = new Matrix(a, m, n);
+        Matrix matrixb = new Matrix(b, 3, 3);
+        matrix.minusEquals(matrixb);
+
+
+        assertArrayEquals("The multiplication went wrong",
+            c, matrix.getArray());
+
+    }
+
+
 
 /**
 * Test copy of a matrix.
