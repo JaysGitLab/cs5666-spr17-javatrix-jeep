@@ -384,5 +384,18 @@ public class Matrix
     	return result;
     }
 
+/**
+* Method to clone the matrix into an object.
+* @return Object with the matrix inside
+*
+*/
+
+    public Object clone()
+    {
+        return this.copy();
+    }
+
+
+
 
 }    

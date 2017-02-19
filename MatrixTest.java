@@ -429,6 +429,19 @@ public class MatrixTest
 
     }
 
+/**
+* Test clone of a matrix.
+*/
+    @Test
+    public void issue7Test()
+    {
+        matrix = Matrix.random(3, 4);
+        Object testMatrix = matrix.clone();
+	Matrix result = (Matrix) testMatrix; 
+        assertArrayEquals("The multiplication went wrong",
+            matrix.getArray(), result.getArray());
+
+    }
 
 
 
