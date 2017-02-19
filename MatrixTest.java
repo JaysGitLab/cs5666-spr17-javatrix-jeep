@@ -434,7 +434,7 @@ public class MatrixTest
         Matrix testMatrix = matrix.minus(matrixb);
 
 
-        assertArrayEquals("The multiplication went wrong",
+        assertArrayEquals("The subtraction went wrong",
             c, testMatrix.getArray());
 
     }
@@ -458,7 +458,7 @@ public class MatrixTest
         matrix.minusEquals(matrixb);
 
 
-        assertArrayEquals("The multiplication went wrong",
+        assertArrayEquals("The subtranction went wrong",
             c, matrix.getArray());
 
     }
@@ -473,7 +473,7 @@ public class MatrixTest
     {
         matrix = Matrix.random(3, 4);
 	Matrix testMatrix = matrix.copy();
-	assertArrayEquals("The multiplication went wrong",
+	assertArrayEquals("The arrays are not the same",
             matrix.getArray(), testMatrix.getArray());
 
     }
@@ -487,7 +487,7 @@ public class MatrixTest
         matrix = Matrix.random(3, 4);
         Object testMatrix = matrix.clone();
 	Matrix result = (Matrix) testMatrix; 
-        assertArrayEquals("The multiplication went wrong",
+        assertArrayEquals("The array are not the same",
             matrix.getArray(), result.getArray());
 
     }
@@ -503,7 +503,7 @@ public class MatrixTest
 	matrix = new Matrix(arraytest, m, n);
 	double[][] copyarray = matrix.getArrayCopy();
 	
-	assertArrayEquals("The multiplication went wrong",
+	assertArrayEquals("The array are not the same",
             copyarray, arraytest);
 
     }

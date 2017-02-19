@@ -376,7 +376,7 @@ public class Matrix
 *
 *@return Double internal array of the matrix
 */
-   public double[][] getArrayCopy()
+    public double[][] getArrayCopy()
     {
 	double[][] copy = new double[m][n];
      	for (int i = 0; i < m; i++)
