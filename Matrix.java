@@ -28,6 +28,7 @@ public class Matrix
     private  double [][] matrix;
     private  int m;
     private  int n;
+
 /**
 *
 *Constructor that build a matrix full of zeros.
@@ -248,6 +249,7 @@ public class Matrix
 	return matrix;
     }
 
+<<<<<<< 6d64e0987fee191a9841154cc9e43165cdbbe01e
 /**
 * Method to multiply a matrix by a scalar.
 * 
@@ -454,5 +456,36 @@ public class Matrix
     }
 
 
+=======
+    /**
+     * Method to add two matrices together.
+     *
+     * @param b Matrix.
+     * @return Two matrices added together.
+     */
+    public Matrix plus(Matrix b)
+    {
+        int row = b.getRowDimension();
+        int col = b.getColumnDimension();
+        
+        if (col != m || row != n)
+        {
+            // Probably not the right exception
+            // but matrices must be same size.
+            throw new IndexOutOfBoundsException();
+        } 
+        
+        for (int i = 0; i < col; i++)
+        {
+            for (int j = 0; j < row; j++)
+            {
+                b.set(i, j, 
+                    (matrix[i][j] + b.get(i, j)));
+            }
+        }
+
+        return b;
+    }
+>>>>>>> Matrix plus is working, javatest isn't.
 
 }    
