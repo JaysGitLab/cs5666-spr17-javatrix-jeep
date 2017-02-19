@@ -474,4 +474,98 @@ public class Matrix
         return result;
     }
 
+/**
+* Method to get the Norm 1.
+*
+*@return double result of norm 1
+*/
+
+    public double norm1()
+    {
+
+        double result = 0;
+	double [] aux = new double[n];
+	double x = 0;
+	for (int i = 0; i < n; i++)
+	{
+	    for (int j = 0; j < m; j++)
+	    {
+	    	x = x + Math.abs(matrix[j][i]); 
+  	    }
+	    aux[i] = x;
+	    x = 0;
+	}
+	double max = 0;
+	for (int i = 0; i < aux.length; i++)
+	{
+	    if (aux[i] > max)
+	    {
+		max = aux[i];
+	    }   
+	}	
+	return max;
+    }
+
+
+/**
+* Method to multiply element by element.
+*
+*@param b matrix to be multiply
+*@return matrix result of multiplication
+*/
+
+    public Matrix arrayTimes(Matrix b)
+    {
+	Matrix result = new Matrix(m, n);
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                result.set(i, j, (matrix[i][j] * b.get(i, j)));
+            }
+        }
+        return result;
+    }
+
+/**
+* Method to multiply element by element in place.
+*
+*@param b matrix to be multiply
+*@return matrix result of multiplication
+*/
+
+    public Matrix arrayTimesEquals(Matrix b)
+    {
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = (matrix[i][j] * b.get(i, j));
+            }
+        }
+        return this;
+    }
+
+
+
+
+  /**
+ * Method to add a matrix in place.
+ *
+ * @param b matrix to be added
+ * @return matrix result of addition
+ */
+
+
+    public Matrix plusEquals(Matrix b)
+    {
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = (matrix[i][j] + b.get(i, j));
+            }
+        }
+        return this;
+    }
 }    

@@ -434,7 +434,7 @@ public class MatrixTest
         Matrix testMatrix = matrix.minus(matrixb);
 
 
-        assertArrayEquals("The multiplication went wrong",
+        assertArrayEquals("The subtraction went wrong",
             c, testMatrix.getArray());
 
     }
@@ -458,12 +458,31 @@ public class MatrixTest
         matrix.minusEquals(matrixb);
 
 
-        assertArrayEquals("The multiplication went wrong",
+        assertArrayEquals("The subtranction went wrong",
             c, matrix.getArray());
 
     }
 
+/**
+ * 
+ * Test for plus method in place.
+ *
+ */
+    @Test
+    public void issue28Test()
+    {
+        m = 3;
+        n = 3;
+        double[][] a = new double[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        double[][] b = new double[][]{{0, 1, 2}, {3, 4, 5}, {6, 7, 8}};
+        double[][] c = new double[][]{{1, 3, 5}, {7, 9, 11}, {13, 15, 17}};
+        Matrix matrix = new Matrix(a, m, n);
+        Matrix matrixb = new Matrix(b, 3, 3);
+        matrix.plusEquals(matrixb);
 
+        assertArrayEquals("The addition went wtong",
+            c, matrix.getArray());
+    }
 
 /**
 * Test copy of a matrix.
@@ -473,7 +492,7 @@ public class MatrixTest
     {
         matrix = Matrix.random(3, 4);
 	Matrix testMatrix = matrix.copy();
-	assertArrayEquals("The multiplication went wrong",
+	assertArrayEquals("The arrays are not the same",
             matrix.getArray(), testMatrix.getArray());
 
     }
@@ -487,7 +506,7 @@ public class MatrixTest
         matrix = Matrix.random(3, 4);
         Object testMatrix = matrix.clone();
 	Matrix result = (Matrix) testMatrix; 
-        assertArrayEquals("The multiplication went wrong",
+        assertArrayEquals("The array are not the same",
             matrix.getArray(), result.getArray());
 
     }
@@ -503,13 +522,73 @@ public class MatrixTest
 	matrix = new Matrix(arraytest, m, n);
 	double[][] copyarray = matrix.getArrayCopy();
 	
-	assertArrayEquals("The multiplication went wrong",
+	assertArrayEquals("The array are not the same",
             copyarray, arraytest);
 
     }
 
+/**
+* Test for Norm 1.
+*/ 
+
+    @Test
+    public void issue24Test()
+    {
+	m = 3;
+  	n = 3;
+	double[][] a = new double[][]{{-3, 5, 7}, {2, 6, 4}, {0, 2, 8}};
+	double result = 19;
+	Matrix matrix = new Matrix(a, m, n);
+	double test = matrix.norm1();
+	assertEquals(test, result, 0);
+    }
+
+ /**
+* Test multiplication element by element.
+*/
+
+    @Test
+    public void issue5Test()
+    {
+    	m = 3;
+        n = 3;
+        double[][] a = new double[][]{{3, 2, 6}, {1, 5, 4}, {2, 10, 5}};
+        double[][] b = new double[][]{{2, 1, 5}, {8, 1, 0}, {3, 2, 1}};
+        double[][] c = new double[][]{{6, 2, 30}, {8, 5, 0}, {6, 20, 5}};
+        Matrix matrix = new Matrix(a, m, n);
+        Matrix matrixb = new Matrix(b, 3, 3);
+        Matrix result = matrix.arrayTimes(matrixb);
 
 
+        assertArrayEquals("The multiplication went wrong",
+            c, result.getArray());
+
+    }
+
+/**
+* Test multiplication element by element in place.
+*/
+
+    @Test
+    public void issue6Test()
+    {
+        m = 3;
+        n = 3;
+        double[][] a = new double[][]{{3, 2, 6}, {1, 5, 4}, {2, 10, 5}};
+        double[][] b = new double[][]{{2, 1, 5}, {8, 1, 0}, {3, 2, 1}};
+        double[][] c = new double[][]{{6, 2, 30}, {8, 5, 0}, {6, 20, 5}};
+        Matrix matrix = new Matrix(a, m, n);
+        Matrix matrixb = new Matrix(b, 3, 3);
+        matrix.arrayTimesEquals(matrixb);
+
+
+        assertArrayEquals("The multiplication went wrong",
+            c, matrix.getArray());
+
+    }
+
+
+   
 
 
 /**
