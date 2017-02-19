@@ -455,6 +455,7 @@ public class Matrix
 
 
 /**
+
 * Method to get the Norm infinite.
 *
 *@return double result of norm inifinite
@@ -485,6 +486,24 @@ public class Matrix
 	}	
 	return max;
     }
+  
+ /**
+ * Method to add a matrix in place.
+ *
+ * @param b matrix to be added
+ * @return matrix result of addition
+ */
 
 
+    public Matrix plusEquals(Matrix b)
+    {
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = (matrix[i][j] + b.get(i, j));
+            }
+        }
+        return this;
+    }
 }    
