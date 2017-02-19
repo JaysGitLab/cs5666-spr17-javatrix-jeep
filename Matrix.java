@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.io.PrintWriter;
 /**
  * Matrix.java
  *
@@ -282,5 +283,55 @@ public class Matrix extends java.lang.Object
         }
         return this;
     }
+
+
+
+/**
+* Print the matrix to the output stream.  
+* 
+* @param output  the output stream
+* @param w  column space in between
+* @param d number of digits after the decimal
+*/
+    public void print(java.io.PrintWriter output, int w, int d)
+    {
+	if (w <= 0 || d < 0)
+	{ 
+	    return;
+	}	
+	for (int i = 0; i < m; i++) 
+	{
+	    for (int j = 0; j < n; j++) 
+	    {
+		if (matrix[i][j] < 0)
+		{
+		    output.print(String.format("%" + (w + 1) 
+		        + "." + d + "f ", (matrix[i][j])));
+		}
+		else
+		{
+		    output.print(String.format(" %" + w 
+			+ "." + d + "f ", (matrix[i][j])));
+	    	}
+	    }
+	    output.println();
+	}
+	output.println();
+    }
+
+
+
+/**
+* Method to print the matrix to console.
+*
+* @param w space in between
+* @param d number of digits after decimal
+*/
+
+    public void print(int w, int d) 
+    {
+	print(new PrintWriter(System.out, true), w, d);
+    }
+
 
 }    
