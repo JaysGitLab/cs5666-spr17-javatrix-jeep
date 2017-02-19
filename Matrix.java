@@ -372,5 +372,46 @@ public class Matrix
 	print(new PrintWriter(System.out, true), w, d);
     }
 
+/**
+* Method to subtrack a matrix.
+*
+*@param b matrix to be subtracted
+*@return matrix result of substraction
+*/
+
+    public Matrix minus(Matrix b)
+    {
+   	Matrix result = new Matrix(m, n);
+	for (int i = 0; i < m; i++)
+	{
+	    for (int j = 0; j < n; j++)
+	    {
+	        result.set(i, j, (matrix[i][j] - b.get(i, j)));
+	    } 
+	}	
+    	return result;
+    }
+
+/**
+* Method to subtrack a matrix in place.
+*
+*@param b matrix to be subtracted
+*@return matrix result of substraction
+*/
+
+    public Matrix minusEquals(Matrix b)
+    {
+       
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = (matrix[i][j] - b.get(i, j));
+            }
+        }
+        return this;
+    }
+
+
 
 }    
