@@ -28,6 +28,7 @@ public class Matrix
     private  double [][] matrix;
     private  int m;
     private  int n;
+
 /**
 *
 *Constructor that build a matrix full of zeros.
@@ -451,6 +452,26 @@ public class Matrix
             }
         }
         return this;
+    }
+
+    /**
+     * Method to add two matrices together.
+     *
+     * @param b Matrix.
+     * @return Two matrices added together.
+     */
+    public Matrix plus(Matrix b)
+    {
+        Matrix result = new Matrix(m, n);
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                result.set(i, j, (matrix[i][j] + b.get(i, j)));
+            }
+        }
+
+        return result;
     }
 
 /**

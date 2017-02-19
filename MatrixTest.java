@@ -603,6 +603,26 @@ public class MatrixTest
 
 
     /**
+     * Test plus matrix function.
+     */
+    @Test
+    public void issue27Test()
+    {
+        m = 3;
+        n = 3;
+        double[][] a = new double[][]{{3, 2, 6}, {1, 5, 4}, {2, 10, 5}};
+        double[][] b = new double[][]{{2, 1, 5}, {8, 1, 0}, {3, 2, 1}};
+        double[][] c = new double[][]{{5, 3, 11}, {9, 6, 4}, {5, 12, 6}};
+        Matrix matrix = new Matrix(a, m, n);
+        Matrix matrixb = new Matrix(b, 3, 3);
+        Matrix testMatrix = matrix.plus(matrixb);
+
+
+        assertArrayEquals("The addition went wrong",
+            c, testMatrix.getArray());
+    }
+
+    /**
     *Clean up for the test.
     */
     @After
