@@ -547,4 +547,33 @@ public class Matrix
         }
         return this;
     }
+
+/**
+ * Method to create the identity matrix.
+ *
+ *@param m rows
+ *@param n colums
+ * @return the identiry matrix
+ */
+
+
+    public static Matrix identity(int m, int n)
+    {
+        Matrix identity = new Matrix(m, n);
+	for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (j == i)
+		{
+		    identity.set(i, j, 1);    
+		}
+            }
+        }
+        return identity;
+    }
+
+
+
+
 }    

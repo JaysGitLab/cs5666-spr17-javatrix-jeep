@@ -587,8 +587,21 @@ public class MatrixTest
 
     }
 
+/**
+* Test identity matrix.
+*/
+    
+    @Test
+    public void issue21Test()
+    {
+    	m = 3;
+	n = 3;
+	Matrix matrix = Matrix.identity(m, n);
+	double [][] a = new double[][]{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
+	assertArrayEquals("The identity is not correct", 
+		a, matrix.getArray());
 
-   
+    }
 
 
 /**
