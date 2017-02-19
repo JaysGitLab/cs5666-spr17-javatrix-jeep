@@ -22,13 +22,12 @@ import java.io.PrintWriter;
  */
 
 
-public class Matrix extends java.lang.Object 
-    implements java.lang.Cloneable, java.io.Serializable 
+public class Matrix 
 {
    
-    static double [][] matrix;
-    static private int m;
-    static private int n;
+    private  double [][] matrix;
+    private  int m;
+    private  int n;
 /**
 *
 *Constructor that build a matrix full of zeros.
@@ -64,20 +63,16 @@ public class Matrix extends java.lang.Object
 	this.m = m;
         this.n = n;
         matrix = new double[m][n];
-	if (a.length >=  m && a[0].length >= n)
+        for (int i = 0; i < m; i++)
         {
-            for (int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++)
             {
-                for (int j = 0; j < n; j++)
-                {
-                    matrix[i][j] = a[i][j];
-                }
+
+                matrix[i][j] = a[i][j];
             }
         }
-        else
-        {
-            throw new IndexOutOfBoundsException();
-	}
+        
+        
     }
 
 
@@ -166,7 +161,7 @@ public class Matrix extends java.lang.Object
      */
     public int getRowDimension()
     {
-        return matrix[0].length;
+        return m;
     }
 
     /** 
@@ -176,9 +171,18 @@ public class Matrix extends java.lang.Object
      */
     public int getColumnDimension()
     {
-        return matrix.length;
+        return n;
     }
 
+/**
+* Return the array.
+*
+* @return double[][]
+*/
+    public double[][] getArray()
+    {
+        return matrix;
+    }
 
 
 
@@ -192,11 +196,11 @@ public class Matrix extends java.lang.Object
 
     public void set(int i, int j, double s)
     {
-	if (i > this.m || j > this.n)
+	if (i > m || j > n)
 	{
 	    throw new ArrayIndexOutOfBoundsException();
 	}	
-	this.matrix [i][j] = s;
+	matrix [i][j] = s;
 
     }    
 
@@ -215,7 +219,7 @@ public class Matrix extends java.lang.Object
         {
             throw new ArrayIndexOutOfBoundsException();
         }
-        double s = this.matrix [i][j];
+        double s = matrix [i][j];
 	return s;
     }
 
@@ -237,7 +241,7 @@ public class Matrix extends java.lang.Object
 	{
 	    for (int j = 0; i < 1; i++)
 	    {
-	        matrix.set(m, n, random.nextInt());
+	        matrix.set(i, j, random.nextInt());
     	    }
 	}
 	
@@ -253,10 +257,10 @@ public class Matrix extends java.lang.Object
 
     public Matrix times(double s)
     {
-	Matrix result = new Matrix(this.m, this.n, s);
-	for (int i = 0; i < this.m; i++)
+	Matrix result = new Matrix(m, n);
+	for (int i = 0; i < m; i++)
 	{
-	    for (int j = 0; i < this.n; i++)
+	    for (int j = 0; j < n; j++)
 	    {
 	        result.set(i, j, matrix[i][j] * s);
  	    }
@@ -274,15 +278,49 @@ public class Matrix extends java.lang.Object
     public Matrix timesEquals(double s)
     {
 
-        for (int i = 0; i < this.m; i++)
+        for (int i = 0; i < m; i++)
         {
-            for (int j = 0; i < this.n; i++)
+            for (int j = 0; j < n; j++)
             {
-                this.matrix[i][j] = (this.matrix[i][j] * s);
+                matrix[i][j] = (matrix[i][j] * s);
             }
         }
         return this;
     }
+
+
+/**
+* Method to multiply a matrix by a matrix.
+*
+* @param b matrix
+* @return MAtrix the product of this * b.
+*/
+
+    public Matrix times(Matrix b)
+    {
+	int bRow = b.getRowDimension();
+	int bCol = b.getColumnDimension();
+	Matrix result = new Matrix(m, bCol);
+	
+	if (n != bRow)
+	{
+	    throw new IllegalArgumentException();
+	}
+	
+	double x = 0;
+	for (int vals = 0; vals < (m); vals++)
+	{
+	    for (int j = 0; j < bCol; j++)
+	    {
+	       	for (int i = 0; i < n; i++)
+	     	{    
+	    	    x = x + (matrix[vals][i] * b.get(i, j));
+	    	}
+	    	result.set(vals, j, x);
+	    	x = 0;
+	    }
+	} 
+        return result;
 
 
 
@@ -318,6 +356,7 @@ public class Matrix extends java.lang.Object
 	}
 	output.println();
     }
+
 
 
 

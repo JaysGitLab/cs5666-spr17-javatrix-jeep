@@ -54,7 +54,7 @@ public class MatrixTest
 		testmatrix [i][j] = 0; 
 	    }
 	}
-	assertArrayEquals("Not the same", testmatrix, matrix.matrix);
+	assertArrayEquals("Not the same", testmatrix, matrix.getArray());
     }
 	
     /**
@@ -115,11 +115,11 @@ public class MatrixTest
         {
             for (int j = 0; j < n; j++)
             {
-                testmatrix [i][j] = 0;
+                testmatrix [i][j] = i;
             }
         }
 	Matrix matrix = new Matrix(testmatrix, m, n);
-	assertArrayEquals("Not the same", testmatrix, matrix.matrix);
+	assertArrayEquals("Not the same", testmatrix, matrix.getArray());
 
 
     }
@@ -142,7 +142,7 @@ public class MatrixTest
             }
         }
         Matrix matrix = new Matrix(testmatrix, m, n);
-        assertArrayEquals("Not the same", testmatrix, matrix.matrix);
+        assertArrayEquals("Not the same", testmatrix, matrix.getArray());
     }
 
     /**
@@ -164,7 +164,7 @@ public class MatrixTest
 	}
 	Matrix matrix = new Matrix(m, n, s);
 	assertArrayEquals("Constant arrays not the same" ,
-			   testmatrix, matrix.matrix);
+			   testmatrix, matrix.getArray());
     }
 
     /**
@@ -185,7 +185,7 @@ public class MatrixTest
             }
         }
         Matrix matrix = new Matrix(testmatrix);
-        assertArrayEquals("Not the same.", testmatrix, matrix.matrix);
+        assertArrayEquals("Not the same.", testmatrix, matrix.getArray());
     }
 
 
@@ -311,13 +311,13 @@ public class MatrixTest
 	Matrix testMatrix = new Matrix(m, n, 5 * s);
 	Matrix multiply = matrix.times(s);
    	assertArrayEquals("The multiplication went wrong", 
-	    multiply.matrix, testMatrix.matrix);   
+	    multiply.getArray(), testMatrix.getArray());   
     }
 
    
 
     /**
-    * Test to thes scalar multiplication in place.
+    * Test scalar multiplication in place.
     */
     @Test
     public void issue47Test()
@@ -329,8 +329,63 @@ public class MatrixTest
 	Matrix testMatrix = new Matrix(m, n, 5 * s);
 	matrix.timesEquals(s);
    	assertArrayEquals("The multiplication went wrong", 
-	    matrix.matrix, testMatrix.matrix);   
+	    matrix.getArray(), testMatrix.getArray());   
     }
+
+
+   /**
+    * Test multiplication between matrixs.
+    */
+    @Test
+    public void issue46Test()
+    {
+        m = 3;
+        n = 3;
+        double[][] a = new double[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+	double[][] b = new double[][]{{2, 2, 2}, {2, 2, 2}, {2, 2, 2}};
+	double[][] c = new double[][]{{12, 12, 12}, {30, 30, 30}, {48, 48, 48}};
+	Matrix matrix = new Matrix(a, m, n);
+	Matrix result = new Matrix(c, m, n);
+	Matrix matrixb = new Matrix(b, m, n);
+	Matrix testMatrix = matrix.times(matrixb);
+	double[][] d = new double[][]{{1}, {2}, {3}};
+	double[][] result2 = new double[][]{{14}, {32}, {50}};
+	
+	Matrix secondTest = new Matrix(d, 3, 1);
+	
+	
+	Matrix final2 = matrix.times(secondTest);
+	
+      	
+        assertArrayEquals("The multiplication went wrong",
+            c, testMatrix.getArray());
+	assertArrayEquals("The multiplication went wrong",
+            result2, final2.getArray());
+	
+
+    }
+
+    /**
+    * Test multiplication between matrixs.
+    * Fail test
+    */
+    @Test(expected = IllegalArgumentException.class)
+    public void issue46TestFail()
+    {
+        m = 2;
+        n = 2;
+        double[][] a = new double[][]{{1, 2}, {4, 5}};
+        double[][] b = new double[][]{{2, 2, 2}, {2, 2, 2}, {2, 2, 2}};
+        double[][] c = new double[][]{{12, 12, 12}, {30, 30, 30}, {48, 48, 48}};
+        Matrix matrix = new Matrix(a, m, n);
+        Matrix result = new Matrix(b, 3, 3);
+        Matrix matrixb = new Matrix(c, 3, 3);
+        Matrix testMatrix = matrix.times(matrixb);
+
+
+        assertArrayEquals("The multiplication went wrong",
+            c, testMatrix.getArray());
+    }   
 
 
 
@@ -370,6 +425,7 @@ public class MatrixTest
   	initial = System.out;
 	System.setOut(new PrintStream(outContent));	
     }
+
 
     /**
     *Clean up for the test.
