@@ -371,6 +371,23 @@ public class Matrix
     {
 	print(new PrintWriter(System.out, true), w, d);
     }
+/**
+* Method to copy the internal array of a matrix.
+*
+*@return Double internal array of the matrix
+*/
 
+    public double[][] getArrayCopy()
+    {
+	double[][] copy = new double[m][n];
+     	for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                copy[i][j] = matrix[i][j];   
+            }
+        }
+	return copy;
+    }
 
 }    
