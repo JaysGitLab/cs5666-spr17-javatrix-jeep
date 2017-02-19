@@ -510,6 +510,24 @@ public class MatrixTest
 
 
 
+/**
+* Test for Norm Inifnite.
+*/ 
+
+    @Test
+    public void issue26Test()
+    {
+	m = 3;
+  	n = 3;
+	double[][] a = new double[][]{{-3, 5, 7}, {2, 6, 4}, {0, 2, 8}};
+	double result = 15;
+	Matrix matrix = new Matrix(a, m, n);
+	double test = matrix.normInf();
+	assertEquals(result, test, 0);
+
+
+    }
+
 
 
 /**

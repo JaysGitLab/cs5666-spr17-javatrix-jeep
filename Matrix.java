@@ -470,7 +470,7 @@ public class Matrix
 	{
 	    for (int j = 0; j < n; j++)
 	    {
-	    	x = x + Math.abs(matrix[j][i)]; 
+	    	x = x + Math.abs(matrix[i][j]); 
   	    }
 	    aux[i] = x;
 	    x = 0;
