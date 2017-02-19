@@ -527,6 +527,49 @@ public class MatrixTest
 
     }
 
+/**
+* Test multiplication element by element.
+*/
+
+    @Test
+    public void issue5Test()
+    {
+    	m = 3;
+        n = 3;
+        double[][] a = new double[][]{{3, 2, 6}, {1, 5, 4}, {2, 10, 5}};
+        double[][] b = new double[][]{{2, 1, 5}, {8, 1, 0}, {3, 2, 1}};
+        double[][] c = new double[][]{{6, 2, 30}, {8, 5, 0}, {6, 20, 5}};
+        Matrix matrix = new Matrix(a, m, n);
+        Matrix matrixb = new Matrix(b, 3, 3);
+        Matrix result = matrix.arrayTimes(matrixb);
+
+
+        assertArrayEquals("The multiplication went wrong",
+            c, result.getArray());
+
+    }
+
+/**
+* Test multiplication element by element in place.
+*/
+
+    @Test
+    public void issue6Test()
+    {
+        m = 3;
+        n = 3;
+        double[][] a = new double[][]{{3, 2, 6}, {1, 5, 4}, {2, 10, 5}};
+        double[][] b = new double[][]{{2, 1, 5}, {8, 1, 0}, {3, 2, 1}};
+        double[][] c = new double[][]{{6, 2, 30}, {8, 5, 0}, {6, 20, 5}};
+        Matrix matrix = new Matrix(a, m, n);
+        Matrix matrixb = new Matrix(b, 3, 3);
+        matrix.arrayTimesEquals(matrixb);
+
+
+        assertArrayEquals("The multiplication went wrong",
+            c, matrix.getArray());
+
+    }
 
 
 
