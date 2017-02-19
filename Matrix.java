@@ -377,7 +377,7 @@ public class Matrix
 *
 *@return Double internal array of the matrix
 */
-   public double[][] getArrayCopy()
+    public double[][] getArrayCopy()
     {
 	double[][] copy = new double[m][n];
      	for (int i = 0; i < m; i++)
@@ -462,26 +462,16 @@ public class Matrix
      */
     public Matrix plus(Matrix b)
     {
-        int row = b.getRowDimension();
-        int col = b.getColumnDimension();
-        
-        if (col != m || row != n)
+        Matrix result = new Matrix(m, n);
+        for (int i = 0; i < m; i++)
         {
-            // Probably not the right exception
-            // but matrices must be same size.
-            throw new IndexOutOfBoundsException();
-        } 
-        
-        for (int i = 0; i < col; i++)
-        {
-            for (int j = 0; j < row; j++)
+            for (int j = 0; j < n; j++)
             {
-                b.set(i, j, 
-                    (matrix[i][j] + b.get(i, j)));
+                result.set(i, j, (matrix[i][j] + b.get(i, j)));
             }
         }
 
-        return b;
+        return result;
     }
 
 }    

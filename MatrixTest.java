@@ -524,21 +524,23 @@ public class MatrixTest
 
 
     /**
-     * Test failure of plus matrix function.
+     * Test plus matrix function.
      */
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     public void issue27Test()
     {
-        m = 5;
-        n = 5;
-        double s = 2;
+        m = 3;
+        n = 3;
+        double[][] a = new double[][]{{3, 2, 6}, {1, 5, 4}, {2, 10, 5}};
+        double[][] b = new double[][]{{2, 1, 5}, {8, 1, 0}, {3, 2, 1}};
+        double[][] c = new double[][]{{5, 3, 11}, {9, 6, 4}, {5, 12, 6}};
+        Matrix matrix = new Matrix(a, m, n);
+        Matrix matrixb = new Matrix(b, 3, 3);
+        Matrix testMatrix = matrix.plus(matrixb);
 
-        Matrix matrix = new Matrix(m, n, s);   
-        Matrix testMatrix = new Matrix(m, 6, (s + s));
 
-        matrix = matrix.plus(testMatrix);
-        assertArrayEquals("Matrice are not the same dimensions.", 
-            matrix.matrix, testMatrix.matrix);
+        assertArrayEquals("The addition went wrong",
+            c, testMatrix.getArray());
     }
 
     /**
