@@ -600,6 +600,37 @@ public class Matrix
         return this;
     }
 
+
+/**
+ *
+ * Method that transpose a Matrix.
+ *
+ * @return matrix result of a transpose.
+ *
+ */
+
+    public Matrix transpose()
+    {
+        double[][] temp = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                temp[j][i] = matrix[i][j];
+            }
+        }
+
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = temp[i][j];
+            }
+        }
+
+        return this;
+    }
+
     /**
      *  Method to trace a matrix.
      *
@@ -655,5 +686,4 @@ public class Matrix
         }
         return identity;
     }
-
 }    
