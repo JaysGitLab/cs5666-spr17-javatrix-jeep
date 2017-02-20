@@ -587,8 +587,24 @@ public class MatrixTest
 
     }
 
+/**
+ *
+ * Test transpose of a matrix.
+ *
+ */
+	@Test
+	public void issue49Test()
+	{
+	    m = 3;
+	    n = 3;
+	    double[][] a = new double[][]{{1, 2 , 3}, {4, 5, 6}, {7, 8, 9}};
+    	double[][] b = new double[][]{{1, 4, 7}, {2, 5, 8}, {3, 6, 9}};
+	    Matrix matrix = new Matrix(a, m, n);
+	    matrix.transpose();
 
-   
+	    assertArrayEquals("The transpose went wrong",
+		    b, matrix.getArray());
+	}
 
 
 /**
