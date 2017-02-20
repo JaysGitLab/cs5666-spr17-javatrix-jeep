@@ -527,7 +527,21 @@ public class MatrixTest
 
     }
 
+/**
+* Test for Norm 1.
+*/ 
 
+    @Test
+    public void issue24Test()
+    {
+	m = 3;
+  	n = 3;
+	double[][] a = new double[][]{{-3, 5, 7}, {2, 6, 4}, {0, 2, 8}};
+	double result = 19;
+	Matrix matrix = new Matrix(a, m, n);
+	double test = matrix.norm1();
+	assertEquals(test, result, 0);
+    }
 
 /**
 * Test for Norm Inifnite.
@@ -548,6 +562,54 @@ public class MatrixTest
     }
 
 
+ /**
+* Test multiplication element by element.
+*/
+
+    @Test
+    public void issue5Test()
+    {
+    	m = 3;
+        n = 3;
+        double[][] a = new double[][]{{3, 2, 6}, {1, 5, 4}, {2, 10, 5}};
+        double[][] b = new double[][]{{2, 1, 5}, {8, 1, 0}, {3, 2, 1}};
+        double[][] c = new double[][]{{6, 2, 30}, {8, 5, 0}, {6, 20, 5}};
+        Matrix matrix = new Matrix(a, m, n);
+        Matrix matrixb = new Matrix(b, 3, 3);
+        Matrix result = matrix.arrayTimes(matrixb);
+
+
+        assertArrayEquals("The multiplication went wrong",
+            c, result.getArray());
+
+    }
+
+/**
+* Test multiplication element by element in place.
+*/
+
+    @Test
+    public void issue6Test()
+    {
+        m = 3;
+        n = 3;
+        double[][] a = new double[][]{{3, 2, 6}, {1, 5, 4}, {2, 10, 5}};
+        double[][] b = new double[][]{{2, 1, 5}, {8, 1, 0}, {3, 2, 1}};
+        double[][] c = new double[][]{{6, 2, 30}, {8, 5, 0}, {6, 20, 5}};
+        Matrix matrix = new Matrix(a, m, n);
+        Matrix matrixb = new Matrix(b, 3, 3);
+        matrix.arrayTimesEquals(matrixb);
+
+
+        assertArrayEquals("The multiplication went wrong",
+            c, matrix.getArray());
+
+    }
+
+
+   
+
+
 
 /**
 * Set up initial output.
@@ -559,6 +621,26 @@ public class MatrixTest
 	System.setOut(new PrintStream(outContent));	
     }
 
+
+    /**
+     * Test plus matrix function.
+     */
+    @Test
+    public void issue27Test()
+    {
+        m = 3;
+        n = 3;
+        double[][] a = new double[][]{{3, 2, 6}, {1, 5, 4}, {2, 10, 5}};
+        double[][] b = new double[][]{{2, 1, 5}, {8, 1, 0}, {3, 2, 1}};
+        double[][] c = new double[][]{{5, 3, 11}, {9, 6, 4}, {5, 12, 6}};
+        Matrix matrix = new Matrix(a, m, n);
+        Matrix matrixb = new Matrix(b, 3, 3);
+        Matrix testMatrix = matrix.plus(matrixb);
+
+
+        assertArrayEquals("The addition went wrong",
+            c, testMatrix.getArray());
+    }
 
     /**
     *Clean up for the test.
