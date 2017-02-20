@@ -656,7 +656,22 @@ public class MatrixTest
     }
 
     /**
+     *  Test trace matrix function.
      *
+     */
+    @Test
+    public void issue48()
+    {
+        m = 3;
+        n = 3;
+        double[][] a = new double[][]{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
+        Matrix matrix = new Matrix(a, m, n);
+        double result = matrix.trace();
+
+        assertEquals(3, result, 0);
+    }
+  
+    /**
      * Test uminus matrix function.
      *
      */
