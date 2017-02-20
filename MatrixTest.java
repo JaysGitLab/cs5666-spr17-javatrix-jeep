@@ -656,6 +656,26 @@ public class MatrixTest
     }
 
     /**
+     *
+     * Test uminus matrix function.
+     *
+     */
+    @Test
+    public void issue50Test()
+    {
+        m = 3;
+        n = 3;
+        double[][] a = new double[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        double[][] b = new double[][]{{-1, -2, -3}, {-4, -5, -6}, {-7, -8, -9}};
+        Matrix matrix = new Matrix(a, m, n);
+        Matrix matrixb = new Matrix(a, 3, 3);
+        Matrix testMatrix = matrix.uminus();
+    
+        assertArrayEquals("uminus went wrong.",
+            b, testMatrix.getArray());
+    }
+
+    /**
     *Clean up for the test.
     */
     @After

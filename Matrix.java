@@ -603,6 +603,23 @@ public class Matrix
     }
 
 /**
+ *  Method to do unary minus.
+ *
+ *  @return Matrix result of uminus.
+ */
+    public Matrix uminus() 
+    {
+        Matrix result = new Matrix(m, n);
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                result.set(i, j, (-matrix[i][j])); 
+            }
+        }
+        return result;
+    }
+
  * Method to create the identity matrix.
  *
  *@param m rows
@@ -626,8 +643,6 @@ public class Matrix
         }
         return identity;
     }
-
-
 
 
 }    
