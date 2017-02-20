@@ -543,6 +543,25 @@ public class MatrixTest
 	assertEquals(test, result, 0);
     }
 
+/**
+* Test for Norm Inifnite.
+*/ 
+
+    @Test
+    public void issue26Test()
+    {
+	m = 3;
+  	n = 3;
+	double[][] a = new double[][]{{-3, 5, 7}, {2, 6, 4}, {0, 2, 8}};
+	double result = 15;
+	Matrix matrix = new Matrix(a, m, n);
+	double test = matrix.normInf();
+	assertEquals(result, test, 0);
+
+
+    }
+
+
  /**
 * Test multiplication element by element.
 */
@@ -606,6 +625,22 @@ public class MatrixTest
 		    b, matrix.getArray());
 	}
 
+/**
+* Test identity matrix.
+*/
+    
+    @Test
+    public void issue21Test()
+    {
+    	m = 3;
+	n = 3;
+	Matrix matrix = Matrix.identity(m, n);
+	double [][] a = new double[][]{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
+	assertArrayEquals("The identity is not correct", 
+		a, matrix.getArray());
+
+    }
+
 
 /**
 * Set up initial output.
@@ -636,6 +671,41 @@ public class MatrixTest
 
         assertArrayEquals("The addition went wrong",
             c, testMatrix.getArray());
+    }
+
+    /**
+     *  Test trace matrix function.
+     *
+     */
+    @Test
+    public void issue48()
+    {
+        m = 3;
+        n = 3;
+        double[][] a = new double[][]{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
+        Matrix matrix = new Matrix(a, m, n);
+        double result = matrix.trace();
+
+        assertEquals(3, result, 0);
+    }
+  
+    /**
+     * Test uminus matrix function.
+     *
+     */
+    @Test
+    public void issue50Test()
+    {
+        m = 3;
+        n = 3;
+        double[][] a = new double[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        double[][] b = new double[][]{{-1, -2, -3}, {-4, -5, -6}, {-7, -8, -9}};
+        Matrix matrix = new Matrix(a, m, n);
+        Matrix matrixb = new Matrix(a, 3, 3);
+        Matrix testMatrix = matrix.uminus();
+    
+        assertArrayEquals("uminus went wrong.",
+            b, testMatrix.getArray());
     }
 
     /**

@@ -528,6 +528,39 @@ public class Matrix
     }
 
 /**
+* Method to get the Norm infinite.
+*
+*@return double result of norm inifinite
+*/
+
+    public double normInf()
+    {
+
+        double result = 0;
+	double [] aux = new double[m];
+	double x = 0;
+	for (int i = 0; i < m; i++)
+	{
+	    for (int j = 0; j < n; j++)
+	    {
+	    	x = x + Math.abs(matrix[i][j]); 
+  	    }
+	    aux[i] = x;
+	    x = 0;
+	}
+	double max = 0;
+	for (int i = 0; i < aux.length; i++)
+	{
+	    if (aux[i] > max)
+	    {
+		max = aux[i];
+	    }   
+	}	
+	return max;
+    }
+  
+
+/**
 * Method to multiply element by element in place.
 *
 *@param b matrix to be multiply
@@ -555,8 +588,6 @@ public class Matrix
  * @param b matrix to be added
  * @return matrix result of addition
  */
-
-
     public Matrix plusEquals(Matrix b)
     {
         for (int i = 0; i < m; i++)
@@ -569,6 +600,7 @@ public class Matrix
         return this;
     }
 
+
 /**
  *
  * Method that transpose a Matrix.
@@ -580,7 +612,6 @@ public class Matrix
     public Matrix transpose()
     {
         double[][] temp = new double[m][n];
-
         for (int i = 0; i < m; i++)
         {
             for (int j = 0; j < n; j++)
@@ -598,5 +629,61 @@ public class Matrix
         }
 
         return this;
+    }
+
+    /**
+     *  Method to trace a matrix.
+     *
+     * @return double of the diagnal matrix.
+     */
+    public double trace()
+    {
+        double x = 0;
+        for (int i = 0; i < Math.min(m, n); i++)
+        {
+            x += matrix[i][i];
+        }
+
+        return x;
+    }
+
+/**
+ *  Method to do unary minus.
+ *
+ *  @return Matrix result of uminus.
+ */
+    public Matrix uminus() 
+    {
+        Matrix result = new Matrix(m, n);
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                result.set(i, j, (-matrix[i][j])); 
+            }
+        }
+        return result;
+    }
+
+/** Method to create the identity matrix.
+ *
+ *@param m rows
+ *@param n colums
+ * @return the identiry matrix
+ */
+    public static Matrix identity(int m, int n)
+    {
+        Matrix identity = new Matrix(m, n);
+	for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (j == i)
+		{
+		    identity.set(i, j, 1);    
+		}
+            }
+        }
+        return identity;
     }
 }    
