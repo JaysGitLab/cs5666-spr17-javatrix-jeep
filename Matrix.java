@@ -568,4 +568,20 @@ public class Matrix
         }
         return this;
     }
+
+    /**
+     *  Method to trace a matrix.
+     *
+     * @return double of the diagnal matrix.
+     */
+    public double trace()
+    {
+        double x = 0;
+        for (int i = 0; i < Math.min(m, n); i++)
+        {
+            x += matrix[i][i];
+        }
+
+        return x;
+    }
 }    
