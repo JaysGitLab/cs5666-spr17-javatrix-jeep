@@ -568,4 +568,40 @@ public class Matrix
         }
         return this;
     }
+
+/**
+*
+*	Method to Left divide a matrix.
+*
+*/
+	public Matrix arrayLeftDivide(Matrix b)
+	{
+		Matrix result = new Matrix(m, n);
+		for (int i = 0; i < m; i++) 
+		{
+      		for (int j = 0; j < n; j++) 
+      		{
+        		result.set(i, j, (b.matrix[i][j] 
+        			/ matrix[i][j]));
+      		}
+	    }
+		return result;
+	}
+
+/**
+*
+*	Method to Left divide a matrix in place.
+*
+*/
+	public Matrix arrayLeftDivideEquals(Matrix b)
+	{
+		for (int i = 0; i < m; i++) 
+		{
+      		for (int j = 0; j < n; j++) 
+      		{
+        		matrix[i][j] = b.matrix[i][j] / matrix[i][j];
+      		}
+		}
+		return this;
+	}
 }    
